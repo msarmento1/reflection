@@ -1,3 +1,3 @@
 #include "type.h"
 
-namespace sys {}
+namespace vs {}

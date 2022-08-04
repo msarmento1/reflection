@@ -2,12 +2,12 @@
 
 #include <string>
 
-#include "sys/reflection/member_info.h"
+#include "reflection/member_info.h"
 
-namespace sys {
+namespace vs {
 class Type : public reflection::MemberInfo {
  public:
   std::string Name;
   std::string HashCode;
 };
-}  // namespace sys
+}  // namespace vs

@@ -1,13 +1,13 @@
 #pragma once
 
 // Forward declaration
-namespace sys {
+namespace vs {
 class Type;
-}  // namespace sys
+}  // namespace vs
 
-namespace sys::reflection {
+namespace vs::reflection {
 class ICustomAttributeProvider {
  public:
   virtual bool IsDefined(const Type& attributeType, bool inherit) = 0;
 };
-}  // namespace sys::reflection
+}  // namespace vs::reflection

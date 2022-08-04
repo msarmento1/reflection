@@ -12,27 +12,25 @@ endif()
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
-include_directories(${CMAKE_SOURCE_DIR})
+include_directories(${CMAKE_SOURCE_DIR}/vs/include)
 
 find_package(Boost 1.79.0 REQUIRED)
 
 add_library(
-   ${PROJECT_NAME} SHARED ${CMAKE_CURRENT_LIST_DIR}/sys/reflection/member_info.cpp
-                          ${CMAKE_CURRENT_LIST_DIR}/sys/int32.cpp
-                          ${CMAKE_CURRENT_LIST_DIR}/sys/object.cpp
-                          ${CMAKE_CURRENT_LIST_DIR}/sys/type.cpp)
+   ${PROJECT_NAME} SHARED ${CMAKE_CURRENT_LIST_DIR}/vs/src/reflection/member_info.cpp
+                          ${CMAKE_CURRENT_LIST_DIR}/vs/src/object.cpp
+                          ${CMAKE_CURRENT_LIST_DIR}/vs/src/type.cpp)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE ${CONAN_LIBS})
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
 
-#install(FILES ${CMAKE_CURRENT_LIST_DIR}/sys/ DESTINATION include/${PROJECT_NAME}-${version})
+#install(FILES ${CMAKE_CURRENT_LIST_DIR}/vs/ DESTINATION include/${PROJECT_NAME}-${version})
+install(DIRECTORY vs/include/ DESTINATION include/${PROJECT_NAME} FILES_MATCHING PATTERN "*.h*")
 install(TARGETS ${PROJECT_NAME}
         DESTINATION lib/${PROJECT_NAME}-${version}
         EXPORT ${PROJECT_NAME}-targets)
 install(EXPORT ${PROJECT_NAME}-targets
         DESTINATION lib/${PROJECT_NAME}-${version})
-
-message(STATUS "Dir: " ${${PROJECT_NAME}_SOURCE_DIR})
 
 configure_file(
    ${reflection_SOURCE_DIR}/pkg/${PROJECT_NAME}-config.cmake.in

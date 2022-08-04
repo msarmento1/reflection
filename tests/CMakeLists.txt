@@ -13,7 +13,7 @@ conan_basic_setup()
 include_directories(${CMAKE_SOURCE_DIR})
 
 add_executable(
-   ${PROJECT_NAME} ${CMAKE_CURRENT_LIST_DIR}/TypeTest.cpp)
+   ${PROJECT_NAME} ${CMAKE_CURRENT_LIST_DIR}/type_test.cpp)
 
 find_package(reflection REQUIRED)
 
